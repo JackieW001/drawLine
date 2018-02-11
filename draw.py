@@ -1,9 +1,6 @@
 from display import *
 
 def draw_line( x0, y0, x1, y1, screen, color ):
-    A = y1-y0
-    B = -(x1-x0)
-    slope = (A*1.0)/-B
     
     if (x0 < x1):
         x = x0
@@ -11,7 +8,24 @@ def draw_line( x0, y0, x1, y1, screen, color ):
     else:
         x = x1
         y = y1
+        x1 = x0
+        y1 = y0
 
+    A = y1-y
+    B = -(x1-x)
+
+    # Slope = 0
+    if (B == 0):
+        if (y1 < y):
+            temp = y
+            y = y1
+            y1 = temp
+        while (y<=y1):
+            plot(screen, color, x, y)
+            y += 1
+        return
+    else:
+        slope = (A*1.0)/-B
         
     #Octant I
     if( slope <= 1 and slope >= 0):
